@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Estudio KMAP</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img src="assets/images/kmaplogo.PNG" alt="Estudio KMAP Logo">
+    </a>
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="nav-list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li class="dropdown">
+        <a href="services.html">Diensten <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="services.html#web-development">Webontwikkeling op maat</a></li>
+          <li><a href="services.html#digital-marketing">Digitale marketing</a></li>
+          <li><a href="services.html#support">Support & optimalisatie</a></li>
+        </ul>
+      </li>
+      <li><a href="about.html">Over ons</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="target-audience.html">Doelgroepen</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+  <div class="container">
+    <h1>Neem contact met ons op</h1>
+    <p>We horen graag van u en staan klaar om al uw vragen te beantwoorden</p>
+  </div>
+</section>
+
+<!-- Contact Content -->
+<section class="contact-content">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Onze contactgegevens</h2>
+        <p>Heeft u vragen over onze diensten of wilt u een project bespreken? Neem gerust contact met ons op via onderstaande gegevens of vul het contactformulier in.</p>
+
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="info-text">
+            <h3>Adres</h3>
+            <p>123 Bedrijfsstraat<br>Amsterdam, Nederland</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="info-text">
+            <h3>Telefoon</h3>
+            <p>+31 6 12345678</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="info-text">
+            <h3>E-mail</h3>
+            <p>info@estudiokmap.nl</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="info-text">
+            <h3>Openingstijden</h3>
+            <p>Maandag - Vrijdag: 9:00 - 17:00<br>
+              Zaterdag - Zondag: Gesloten</p>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <h3>Volg ons</h3>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h2>Stuur ons een bericht</h2>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Naam*</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mailadres*</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Telefoonnummer</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Onderwerp*</label>
+            <select id="subject" name="subject" required>
+              <option value="">Kies een onderwerp</option>
+              <option value="web-development">Webontwikkeling</option>
+              <option value="digital-marketing">Digitale marketing</option>
+              <option value="support">Support & optimalisatie</option>
+              <option value="other">Anders</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Bericht*</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Verstuur bericht</button>
+        </form>
+
+        <div id="formSuccess" class="form-success">
+          <i class="fas fa-check-circle"></i>
+          <h3>Bedankt voor uw bericht!</h3>
+          <p>We hebben uw bericht ontvangen en nemen zo snel mogelijk contact met u op.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-section">
+      <h2>Onze locatie</h2>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.476961783373!2d4.894758315801661!3d52.362379679784695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDIxJzQ0LjYiTiA0wrA1MyczOS4xIkU!5e0!3m2!1sen!2snl!4v1623941234567!5m2!1sen!2snl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="contact-cta">
+      <div class="cta-card">
+        <div class="cta-icon">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+        <h3>Plan een gratis consult</h3>
+        <p>Boek een afspraak voor een vrijblijvend gesprek over uw project.</p>
+        <a href="#" class="btn btn-outline">Plan nu</a>
+      </div>
+
+      <div class="cta-card">
+        <div class="cta-icon">
+          <i class="fas fa-question-circle"></i>
+        </div>
+        <h3>Veelgestelde vragen</h3>
+        <p>Bekijk onze FAQ voor antwoorden op veelgestelde vragen.</p>
+        <a href="#" class="btn btn-outline">Bekijk FAQ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img src="assets/images/logo.png" alt="Estudio KMAP Logo" class="footer-logo">
+        <p>Wij creëren op maat gemaakte websites en bieden doordachte digitale marketingoplossingen die merken helpen groeien in een steeds digitalere wereld.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3>Snelle links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Diensten</a></li>
+          <li><a href="about.html">Over ons</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Diensten</h3>
+        <ul>
+          <li><a href="services.html#web-development">Webontwikkeling</a></li>
+          <li><a href="services.html#digital-marketing">Digitale marketing</a></li>
+          <li><a href="services.html#support">Support & optimalisatie</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul class="contact-info">
+          <li><i class="fas fa-map-marker-alt"></i> <span>123 Bedrijfsstraat, Amsterdam, Nederland</span></li>
+          <li><i class="fas fa-phone"></i> <span>+31 6 12345678</span></li>
+          <li><i class="fas fa-envelope"></i> <span>info@estudiokmap.nl</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2023 Estudio KMAP. Alle rechten voorbehouden.</p>
+      <div class="footer-links">
+        <a href="#">Privacybeleid</a>
+        <a href="#">Algemene voorwaarden</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

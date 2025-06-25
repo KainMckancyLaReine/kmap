@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Estudio KMAP</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img src="assets/images/kmaplogo.PNG" alt="Estudio KMAP Logo">
+    </a>
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="nav-list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li class="dropdown">
+        <a href="services.html">Diensten <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="services.html#web-development">Webontwikkeling op maat</a></li>
+          <li><a href="services.html#digital-marketing">Digitale marketing</a></li>
+          <li><a href="services.html#support">Support & optimalisatie</a></li>
+        </ul>
+      </li>
+      <li><a href="about.html">Over ons</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="target-audience.html">Doelgroepen</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+  <div class="container">
+    <h1>Onze projecten</h1>
+    <p>Bekijk enkele van onze recente werken en klantcases</p>
+  </div>
+</section>
+
+<!-- Portfolio Content -->
+<section class="portfolio-content">
+  <div class="container">
+    <div class="portfolio-filter">
+      <button class="filter-btn active" data-filter="all">Alles</button>
+      <button class="filter-btn" data-filter="web">Webontwikkeling</button>
+      <button class="filter-btn" data-filter="marketing">Digitale Marketing</button>
+      <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+    </div>
+
+    <div class="portfolio-grid">
+      <!-- Project 1 -->
+      <div class="portfolio-item" data-category="web">
+        <div class="portfolio-image">
+          <img src="assets/images/project1.jpg" alt="Veiligheidsdienst Nederland">
+          <div class="portfolio-overlay">
+            <h3>Veiligheidsdienst Nederland</h3>
+            <p>Complete website redesign met geïntegreerd boekingssysteem</p>
+            <a href="#" class="btn btn-outline">Bekijk case</a>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Veiligheidsdienst Nederland</h3>
+          <p>Webontwikkeling</p>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="portfolio-item" data-category="web,ecommerce">
+        <div class="portfolio-image">
+          <img src="assets/images/project2.jpg" alt="Beterwhite">
+          <div class="portfolio-overlay">
+            <h3>Beterwhite</h3>
+            <p>E-commerce platform voor tandheelkundige producten</p>
+            <a href="#" class="btn btn-outline">Bekijk case</a>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Beterwhite</h3>
+          <p>Webontwikkeling, E-commerce</p>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="portfolio-item" data-category="marketing">
+        <div class="portfolio-image">
+          <img src="assets/images/project3.jpg" alt="Lareine Coaching">
+          <div class="portfolio-overlay">
+            <h3>Lareine Coaching</h3>
+            <p>Social media strategie en contentcampagne</p>
+            <a href="#" class="btn btn-outline">Bekijk case</a>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Lareine Coaching</h3>
+          <p>Digitale Marketing</p>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="portfolio-item" data-category="web">
+        <div class="portfolio-image">
+          <img src="https://via.placeholder.com/600x400?text=Creative+City" alt="Creative City Center">
+          <div class="portfolio-overlay">
+            <h3>Creative City Center</h3>
+            <p>Artist portfolio website met custom CMS</p>
+            <a href="#" class="btn btn-outline">Bekijk case</a>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Creative City Center</h3>
+          <p>Webontwikkeling</p>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="portfolio-item" data-category="marketing,ecommerce">
+        <div class="portfolio-image">
+          <img src="https://via.placeholder.com/600x400?text=Mode+Boutique" alt="Mode Boutique">
+          <div class="portfolio-overlay">
+            <h3>Mode Boutique</h3>
+            <p>Meta Ads campagne voor nieuwe collectie</p>
+            <a href="#" class="btn btn-outline">Bekijk case</a>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Mode Boutique</h3>
+          <p>Digitale Marketing, E-commerce</p>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="portfolio-item" data-category="web">
+        <div class="portfolio-image">
+          <img src="https://via.placeholder.com/600x400?text=Startup+Portal" alt="Startup Portal">
+          <div class="portfolio-overlay">
+            <h3>Startup Portal</h3>
+            <p>Webapplicatie voor startup community</p>
+            <a href="#" class="btn btn-outline">Bekijk case</a>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Startup Portal</h3>
+          <p>Webontwikkeling</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-stats">
+      <div class="stat-card">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Tevreden klanten</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">85%</div>
+        <div class="stat-label">Terugkerende klanten</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Projecten op tijd afgerond</div>
+      </div>
+    </div>
+
+    <div class="client-testimonials">
+      <h2>Wat onze klanten zeggen</h2>
+      <div class="testimonial-slider">
+        <div class="testimonial-slide active">
+          <div class="testimonial-content">
+            <p>"Estudio KMAP heeft ons geholpen met een volledig nieuwe website en marketingstrategie. Het resultaat was verbluffend - 40% meer leads in de eerste maand!"</p>
+            <div class="testimonial-author">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Jan">
+              <div>
+                <h4>Jan van Veiligheidsdienst Nederland</h4>
+                <p>CEO</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide">
+          <div class="testimonial-content">
+            <p>"De persoonlijke aanpak en aandacht voor detail maken Estudio KMAP echt uniek. Ze begrepen precies wat we nodig hadden voor onze online aanwezigheid."</p>
+            <div class="testimonial-author">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah">
+              <div>
+                <h4>Sarah van Beterwhite</h4>
+                <p>Marketing Directeur</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Klaar om uw project te starten?</h2>
+      <p>Neem contact met ons op om te bespreken hoe we uw bedrijf kunnen helpen groeien.</p>
+      <a href="contact.html" class="btn btn-primary">Contact opnemen</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img src="assets/images/logo.png" alt="Estudio KMAP Logo" class="footer-logo">
+        <p>Wij creëren op maat gemaakte websites en bieden doordachte digitale marketingoplossingen die merken helpen groeien in een steeds digitalere wereld.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3>Snelle links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Diensten</a></li>
+          <li><a href="about.html">Over ons</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Diensten</h3>
+        <ul>
+          <li><a href="services.html#web-development">Webontwikkeling</a></li>
+          <li><a href="services.html#digital-marketing">Digitale marketing</a></li>
+          <li><a href="services.html#support">Support & optimalisatie</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul class="contact-info">
+          <li><i class="fas fa-map-marker-alt"></i> <span>123 Bedrijfsstraat, Amsterdam, Nederland</span></li>
+          <li><i class="fas fa-phone"></i> <span>+31 6 12345678</span></li>
+          <li><i class="fas fa-envelope"></i> <span>info@estudiokmap.nl</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2023 Estudio KMAP. Alle rechten voorbehouden.</p>
+      <div class="footer-links">
+        <a href="#">Privacybeleid</a>
+        <a href="#">Algemene voorwaarden</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
