@@ -19,87 +19,192 @@
             overflow-x: hidden;
         }
 
-        /* Preloader */
+        /* Modern Preloader */
         .preloader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 50%, #f8f9fa 100%);
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #000 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .preloader.hidden {
             opacity: 0;
             visibility: hidden;
+            transform: scale(1.1);
         }
 
         .preloader-content {
             text-align: center;
             position: relative;
+            max-width: 800px;
+            width: 90%;
         }
 
         .preloader-logo {
-            font-size: 72px;
+            font-size: 64px;
             font-weight: 900;
-            margin-bottom: 40px;
-            letter-spacing: -3px;
-            color: #000;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            color: #ffffff;
             position: relative;
-            animation: logoScale 2s ease-in-out infinite;
+            animation: logoGlow 2s ease-in-out infinite;
         }
 
-        .preloader-logo::after {
+        .preloader-logo::before {
+            content: 'KMAP';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffd93d, #667eea);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .code-container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-container::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 120px;
-            height: 120px;
-            border: 3px solid transparent;
-            border-top: 3px solid #000;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: spin 1s linear infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(90deg, rgba(255, 107, 107, 0.2), rgba(78, 205, 196, 0.2), rgba(255, 217, 61, 0.2));
+            border-radius: 12px 12px 0 0;
         }
 
-        .preloader-text {
-            font-size: 18px;
-            margin-bottom: 50px;
-            color: #666;
-            font-weight: 500;
-            animation: textPulse 2s ease-in-out infinite;
-        }
-
-        .loading-container {
+        .code-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
             position: relative;
-            width: 300px;
-            margin: 0 auto;
+            z-index: 1;
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5f56;
+        }
+
+        .code-dot:nth-child(2) {
+            background: #ffbd2e;
+        }
+
+        .code-dot:nth-child(3) {
+            background: #27ca3f;
+        }
+
+        .code-title {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            margin-left: 10px;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+
+        .code-content {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: left;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .code-line {
+            margin-bottom: 8px;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: typeIn 0.8s ease forwards;
+        }
+
+        .code-line:nth-child(1) { animation-delay: 0.5s; }
+        .code-line:nth-child(2) { animation-delay: 0.8s; }
+        .code-line:nth-child(3) { animation-delay: 1.1s; }
+        .code-line:nth-child(4) { animation-delay: 1.4s; }
+        .code-line:nth-child(5) { animation-delay: 1.7s; }
+
+        .code-keyword {
+            color: #ff6b6b;
+        }
+
+        .code-string {
+            color: #4ecdc4;
+        }
+
+        .code-comment {
+            color: #666;
+            font-style: italic;
+        }
+
+        .code-function {
+            color: #ffd93d;
+        }
+
+        .code-variable {
+            color: #667eea;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 18px;
+            background: #ffffff;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+
+        .loading-section {
+            margin-top: 40px;
+        }
+
+        .loading-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            font-weight: 500;
         }
 
         .loading-bar {
             width: 100%;
-            height: 8px;
-            background: #e9ecef;
-            border-radius: 10px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
             overflow: hidden;
             position: relative;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .loading-progress {
             height: 100%;
-            background: linear-gradient(90deg, #000 0%, #333 50%, #000 100%);
-            border-radius: 10px;
-            animation: loadingProgress 2.5s ease-in-out;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffd93d, #667eea);
+            background-size: 400% 400%;
+            border-radius: 2px;
+            animation: loadingProgress 2.5s ease-in-out, gradientShift 2s ease infinite;
             width: 0%;
             position: relative;
-            overflow: hidden;
         }
 
         .loading-progress::after {
@@ -109,74 +214,75 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             animation: shimmer 1.5s ease-in-out infinite;
         }
 
         .loading-percentage {
             position: absolute;
-            top: -35px;
-            left: 0;
-            font-size: 14px;
+            top: -25px;
+            right: 0;
+            font-size: 12px;
             font-weight: 600;
-            color: #000;
-            animation: percentageMove 2.5s ease-in-out;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Monaco', 'Menlo', monospace;
         }
 
-        .creative-elements {
+        .particles {
             position: absolute;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-            opacity: 0.6;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
         }
 
-        .creative-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            animation: iconFloat 3s ease-in-out infinite;
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            animation: float 6s ease-in-out infinite;
         }
 
-        .creative-icon:nth-child(1) {
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-            animation-delay: 0s;
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 0.5s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 1.5s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 2.5s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 3.5s; }
+
+        @keyframes logoGlow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+                transform: scale(1.02);
+            }
         }
 
-        .creative-icon:nth-child(2) {
-            background: linear-gradient(135deg, #4ecdc4, #44a08d);
-            animation-delay: 0.5s;
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .creative-icon:nth-child(3) {
-            background: linear-gradient(135deg, #ffd93d, #ff8b00);
-            animation-delay: 1s;
+        @keyframes typeIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        .creative-icon:nth-child(4) {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            animation-delay: 1.5s;
-        }
-
-        @keyframes logoScale {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        @keyframes textPulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
         @keyframes loadingProgress {
@@ -189,15 +295,17 @@
             100% { transform: translateX(100%); }
         }
 
-        @keyframes percentageMove {
-            0% { left: 0; }
-            100% { left: calc(100% - 20px); }
-        }
-
-        @keyframes iconFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-10px) rotate(5deg); }
-            66% { transform: translateY(5px) rotate(-5deg); }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-10px) rotate(180deg);
+            }
         }
 
         .container {
@@ -518,6 +626,18 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .preloader-logo {
+                font-size: 48px;
+            }
+
+            .code-container {
+                padding: 20px;
+            }
+
+            .code-content {
+                font-size: 12px;
+            }
+
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -570,20 +690,54 @@
     </style>
 </head>
 <body>
-<!-- Preloader -->
+<!-- Modern Preloader -->
 <div class="preloader" id="preloader">
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
     <div class="preloader-content">
-        <div class="creative-elements">
-            <div class="creative-icon">🎨</div>
-            <div class="creative-icon">💻</div>
-            <div class="creative-icon">🚀</div>
-            <div class="creative-icon">✨</div>
-        </div>
         <div class="preloader-logo">KMAP</div>
-        <div class="preloader-text">Crafting digital experiences</div>
-        <div class="loading-container">
-            <div class="loading-percentage" id="loadingPercentage">0%</div>
+
+        <div class="code-container">
+            <div class="code-header">
+                <div class="code-dot"></div>
+                <div class="code-dot"></div>
+                <div class="code-dot"></div>
+                <div class="code-title">initializing.js</div>
+            </div>
+
+            <div class="code-content">
+                <div class="code-line">
+                    <span class="code-keyword">const</span> <span class="code-variable">agency</span> = <span class="code-keyword">new</span> <span class="code-function">CreativeAgency</span>(<span class="code-string">'KMAP'</span>);
+                </div>
+                <div class="code-line">
+                    <span class="code-variable">agency</span>.<span class="code-function">loadServices</span>([<span class="code-string">'design'</span>, <span class="code-string">'development'</span>, <span class="code-string">'branding'</span>]);
+                </div>
+                <div class="code-line">
+                    <span class="code-comment">// Crafting digital experiences...</span>
+                </div>
+                <div class="code-line">
+                    <span class="code-keyword">await</span> <span class="code-variable">agency</span>.<span class="code-function">initialize</span>();
+                </div>
+                <div class="code-line">
+                    <span class="code-variable">console</span>.<span class="code-function">log</span>(<span class="code-string">'Ready to create magic ✨'</span>);<span class="cursor"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="loading-section">
+            <div class="loading-text">Loading creative resources...</div>
             <div class="loading-bar">
+                <div class="loading-percentage" id="loadingPercentage">0%</div>
                 <div class="loading-progress"></div>
             </div>
         </div>
@@ -696,29 +850,56 @@
 </section>
 
 <script>
-    // Preloader
+    // Modern Preloader with Code Animation
     window.addEventListener('load', function() {
         const preloader = document.getElementById('preloader');
         const percentageElement = document.getElementById('loadingPercentage');
         let percentage = 0;
 
-        // Animate percentage counter
-        const percentageInterval = setInterval(() => {
-            percentage += Math.random() * 15;
-            if (percentage > 100) percentage = 100;
-            percentageElement.textContent = Math.floor(percentage) + '%';
+        // Voorkom scrollen tijdens de preloader
+        document.body.style.overflow = 'hidden';
 
-            if (percentage >= 100) {
-                clearInterval(percentageInterval);
+        // Animate percentage counter with realistic loading steps
+        const loadingSteps = [
+            { percent: 15, delay: 200, text: 'Initializing creative engine...' },
+            { percent: 35, delay: 400, text: 'Loading design systems...' },
+            { percent: 60, delay: 600, text: 'Compiling brand assets...' },
+            { percent: 85, delay: 300, text: 'Finalizing experience...' },
+            { percent: 100, delay: 200, text: 'Ready to create magic ✨' }
+        ];
+
+        let currentStep = 0;
+
+        function animateLoading() {
+            if (currentStep < loadingSteps.length) {
+                const step = loadingSteps[currentStep];
+
+                const incrementInterval = setInterval(() => {
+                    if (percentage < step.percent) {
+                        percentage += Math.random() * 3 + 1;
+                        if (percentage > step.percent) percentage = step.percent;
+                        percentageElement.textContent = Math.floor(percentage) + '%';
+                    } else {
+                        clearInterval(incrementInterval);
+                        currentStep++;
+                        setTimeout(animateLoading, step.delay);
+                    }
+                }, 50);
+            } else {
+                // All steps completed, hide preloader
                 setTimeout(() => {
                     preloader.classList.add('hidden');
-                    // Remove preloader from DOM after animation
                     setTimeout(() => {
                         preloader.remove();
+                        // Sta scrollen weer toe
+                        document.body.style.overflow = 'auto';
                     }, 800);
-                }, 300);
+                }, 500);
             }
-        }, 100);
+        }
+
+        // Start loading animation after initial code typing
+        setTimeout(animateLoading, 2000);
     });
 
     // Smooth scrolling for navigation links
@@ -777,6 +958,22 @@
         card.style.transition = 'all 0.8s ease';
         observer.observe(card);
     });
+
+    // Enhanced particle system
+    function createParticles() {
+        const particles = document.querySelector('.particles');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            particles.appendChild(particle);
+        }
+    }
+
+    // Initialize particles on load
+    createParticles();
 </script>
 </body>
 </html>
