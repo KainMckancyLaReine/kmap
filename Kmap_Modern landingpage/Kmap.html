@@ -624,6 +624,168 @@
             transform: translate(5px, -5px);
         }
 
+        /* Pricing Modal */
+        .pricing-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .pricing-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-modal.active .pricing-content {
+            transform: scale(1);
+        }
+
+        .pricing-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-close:hover {
+            background: #e0e0e0;
+            color: #000;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .pricing-logo {
+            font-size: 32px;
+            font-weight: 900;
+            color: #000;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .pricing-subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .pricing-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .pricing-item:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-type {
+            background: #000;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .pricing-details {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .pricing-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .pricing-duration {
+            font-size: 12px;
+            color: #666;
+            margin-left: 8px;
+        }
+
+        .pricing-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .pricing-cta {
+            background: #000;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .pricing-cta:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .pricing-note {
+            font-size: 12px;
+            color: #999;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .preloader-logo {
@@ -657,6 +819,20 @@
 
             .nav-links {
                 display: none;
+            }
+
+            .pricing-content {
+                padding: 30px 20px;
+            }
+
+            .pricing-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .pricing-price {
+                align-self: flex-end;
             }
         }
 
@@ -744,6 +920,56 @@
     </div>
 </div>
 
+<!-- Pricing Modal -->
+<div class="pricing-modal" id="pricingModal">
+    <div class="pricing-content">
+        <button class="pricing-close" id="closePricing">&times;</button>
+
+        <div class="pricing-header">
+            <div class="pricing-logo">KMAP</div>
+            <p class="pricing-subtitle">Transparent pricing for exceptional results</p>
+        </div>
+
+        <div class="pricing-item">
+            <div class="pricing-label">
+                <span class="pricing-type">Standard</span>
+                <span class="pricing-details">Website design & development</span>
+            </div>
+            <div>
+                <span class="pricing-price">€8,000</span>
+                <span class="pricing-duration">/ project</span>
+            </div>
+        </div>
+
+        <div class="pricing-item">
+            <div class="pricing-label">
+                <span class="pricing-type">Premium</span>
+                <span class="pricing-details">Full brand identity + website</span>
+            </div>
+            <div>
+                <span class="pricing-price">€12,000</span>
+                <span class="pricing-duration">/ project</span>
+            </div>
+        </div>
+
+        <div class="pricing-item">
+            <div class="pricing-label">
+                <span class="pricing-type">Enterprise</span>
+                <span class="pricing-details">Custom web application</span>
+            </div>
+            <div>
+                <span class="pricing-price">€25,000</span>
+                <span class="pricing-duration">/ project</span>
+            </div>
+        </div>
+
+        <div class="pricing-footer">
+            <button class="pricing-cta">Schedule a call 📅</button>
+            <p class="pricing-note">All projects include 3 rounds of revisions and 30 days of post-launch support. Custom packages available for ongoing collaborations.</p>
+        </div>
+    </div>
+</div>
+
 <header class="header">
     <div class="container">
         <nav class="nav">
@@ -768,7 +994,7 @@
 
                 <div class="hero-buttons">
                     <a href="#" class="btn-primary">Discuss a project 💬</a>
-                    <a href="#" class="btn-secondary">📋 View pricing</a>
+                    <a href="#" class="btn-secondary" id="viewPricing">📋 View pricing</a>
                 </div>
 
                 <div class="services">
@@ -900,6 +1126,30 @@
 
         // Start loading animation after initial code typing
         setTimeout(animateLoading, 2000);
+    });
+
+    // Pricing Modal Logic
+    const pricingModal = document.getElementById('pricingModal');
+    const viewPricingBtn = document.getElementById('viewPricing');
+    const closePricingBtn = document.getElementById('closePricing');
+
+    viewPricingBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        pricingModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    closePricingBtn.addEventListener('click', function() {
+        pricingModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+
+    // Close modal when clicking outside content
+    pricingModal.addEventListener('click', function(e) {
+        if (e.target === pricingModal) {
+            pricingModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
     });
 
     // Smooth scrolling for navigation links
