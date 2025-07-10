@@ -8,6 +8,14 @@ Estudio KMAP is een digitaal bureau gespecialiseerd in webontwikkeling en digita
 
 ---
 
+## 🎬 Video Trailer
+
+https://github.com/KainMckancyLaReine/kmap/Trailer.mp4
+
+*Als de video niet direct speelt, [download hem dan hier](./Trailer.mp4)*
+
+---
+
 ## 🌐 Website-overzicht
 
 De website is gebouwd met **HTML**, **CSS** en **JavaScript**. Het biedt een moderne, responsieve gebruikerservaring met aandacht voor:
@@ -18,7 +26,7 @@ De website is gebouwd met **HTML**, **CSS** en **JavaScript**. Het biedt een mod
 
 ---
 
-## 📄 Pagina’s
+## 📄 Pagina's
 
 - **Home**  
   Overzicht van diensten en korte introductie.
@@ -69,13 +77,11 @@ De website is gebouwd met **HTML**, **CSS** en **JavaScript**. Het biedt een mod
 ## 📁 Structuur van de bestanden
 
 ```plaintext
-/
+/kmap
+├── Trailer.mp4              # Promotievideo (hoofdmap)
 ├── index.html               # Homepagina
-├── diensten.html            # Overzicht diensten
-├── over-ons.html            # Over ons pagina
-├── portfolio.html           # Portfolio showcase
-├── doelgroepen.html         # Doelgroepen informatie
-├── blog.html                # Blog artikelen
+├── about.html               # Over ons pagina
+├── projects.html            # Portfolio showcase
 ├── contact.html             # Contactpagina
 ├── css/
 │   └── style.css            # Hoofdstylesheet
