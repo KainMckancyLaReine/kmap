@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMAP - Creative Agency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 50%, #f8f9fa 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-content {
+            text-align: center;
+            position: relative;
+        }
+
+        .preloader-logo {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            letter-spacing: -3px;
+            color: #000;
+            position: relative;
+            animation: logoScale 2s ease-in-out infinite;
+        }
+
+        .preloader-logo::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            border: 3px solid transparent;
+            border-top: 3px solid #000;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: spin 1s linear infinite;
+        }
+
+        .preloader-text {
+            font-size: 18px;
+            margin-bottom: 50px;
+            color: #666;
+            font-weight: 500;
+            animation: textPulse 2s ease-in-out infinite;
+        }
+
+        .loading-container {
+            position: relative;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .loading-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #000 0%, #333 50%, #000 100%);
+            border-radius: 10px;
+            animation: loadingProgress 2.5s ease-in-out;
+            width: 0%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+
+        .loading-percentage {
+            position: absolute;
+            top: -35px;
+            left: 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #000;
+            animation: percentageMove 2.5s ease-in-out;
+        }
+
+        .creative-elements {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            opacity: 0.6;
+        }
+
+        .creative-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .creative-icon:nth-child(1) {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            animation-delay: 0s;
+        }
+
+        .creative-icon:nth-child(2) {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            animation-delay: 0.5s;
+        }
+
+        .creative-icon:nth-child(3) {
+            background: linear-gradient(135deg, #ffd93d, #ff8b00);
+            animation-delay: 1s;
+        }
+
+        .creative-icon:nth-child(4) {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            animation-delay: 1.5s;
+        }
+
+        @keyframes logoScale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes loadingProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes percentageMove {
+            0% { left: 0; }
+            100% { left: calc(100% - 20px); }
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(5deg); }
+            66% { transform: translateY(5px) rotate(-5deg); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #000;
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        .availability {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 15px;
+        }
+
+        .cta-button {
+            background: #000;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-button:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 60px;
+            background: linear-gradient(135deg, #f5f5f5, #ffffff);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .hero-text h1 strong {
+            font-weight: 700;
+        }
+
+        .price {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            background: #000;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #000;
+            padding: 15px 30px;
+            border: 2px solid #000;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #000;
+            color: white;
+        }
+
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .service-tag {
+            background: #e9ecef;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .author-info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Projects Grid */
+        .projects {
+            padding: 60px 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            height: 300px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image.dark {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+        }
+
+        .project-image.green {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+
+        .project-image.orange {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+
+        .project-mockup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-client {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .project-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .project-arrow {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-arrow {
+            background: rgba(255,255,255,0.3);
+            transform: translate(5px, -5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                margin: 0 10px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text, .testimonial, .project-card {
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .project-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .project-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .project-card:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+    <div class="preloader-content">
+        <div class="creative-elements">
+            <div class="creative-icon">🎨</div>
+            <div class="creative-icon">💻</div>
+            <div class="creative-icon">🚀</div>
+            <div class="creative-icon">✨</div>
+        </div>
+        <div class="preloader-logo">KMAP</div>
+        <div class="preloader-text">Crafting digital experiences</div>
+        <div class="loading-container">
+            <div class="loading-percentage" id="loadingPercentage">0%</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a href="#" class="logo">KMAP</a>
+            <ul class="nav-links">
+                <li><span class="availability">• 1 Spot Available for July</span></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="cta-button">Schedule a call 📅</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="price">From €8,000</p>
+                <h1>Full-service creative partner for <strong>brands that want to stand out.</strong></h1>
+
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">Discuss a project 💬</a>
+                    <a href="#" class="btn-secondary">📋 View pricing</a>
+                </div>
+
+                <div class="services">
+                    <span class="service-tag">🎨 Design</span>
+                    <span class="service-tag">💻 Development</span>
+                    <span class="service-tag">🔧 No-code</span>
+                    <span class="service-tag">🏷️ Branding</span>
+                    <span class="service-tag">✍️ Copywriting</span>
+                    <span class="service-tag">& more..</span>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <p class="testimonial-text">Seamless collaboration and stunning results. KMAP truly brought our vision to life.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">TR</div>
+                    <div class="author-info">
+                        <h4>Tim Richters</h4>
+                        <p>Founder FourEditors & Synergy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="projects" id="projects">
+    <div class="container">
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image dark">
+                    <div class="project-mockup">📱 Podcast App Design</div>
+                    <div class="project-arrow">↗</div>
+                </div>
+                <div class="project-info">
+                    <p class="project-client">🎙️ Lotgenoten Podcast</p>
+                    <h3 class="project-title">Branding Project</h3>
+                    <p class="project-description">Complete brand identity and mobile app design for a popular Dutch podcast series.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image orange">
+                    <div class="project-mockup">🛍️ E-commerce Design</div>
+                    <div class="project-arrow">↗</div>
+                </div>
+                <div class="project-info">
+                    <p class="project-client">🏪 Icon Amsterdam</p>
+                    <h3 class="project-title">BF/CM Campaign</h3>
+                    <p class="project-description">Black Friday campaign design and mobile optimization for premium retail brand.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <div class="project-mockup">📱 Social App UI</div>
+                    <div class="project-arrow">↗</div>
+                </div>
+                <div class="project-info">
+                    <p class="project-client">⚽ Schouders Eronder</p>
+                    <h3 class="project-title">App Development</h3>
+                    <p class="project-description">Social networking app for sports enthusiasts with real-time messaging features.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image green">
+                    <div class="project-mockup">🏃‍♂️ Fitness Branding</div>
+                    <div class="project-arrow">↗</div>
+                </div>
+                <div class="project-info">
+                    <p class="project-client">💪 Kaizen Athletes</p>
+                    <h3 class="project-title">Brand Identity</h3>
+                    <p class="project-description">Complete rebrand for fitness coaching platform focused on sustainable growth.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Preloader
+    window.addEventListener('load', function() {
+        const preloader = document.getElementById('preloader');
+        const percentageElement = document.getElementById('loadingPercentage');
+        let percentage = 0;
+
+        // Animate percentage counter
+        const percentageInterval = setInterval(() => {
+            percentage += Math.random() * 15;
+            if (percentage > 100) percentage = 100;
+            percentageElement.textContent = Math.floor(percentage) + '%';
+
+            if (percentage >= 100) {
+                clearInterval(percentageInterval);
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                    // Remove preloader from DOM after animation
+                    setTimeout(() => {
+                        preloader.remove();
+                    }, 800);
+                }, 300);
+            }
+        }, 100);
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Project card hover effects
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(255, 255, 255, 0.95)';
+        } else {
+            header.style.background = 'white';
+        }
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'all 0.8s ease';
+        observer.observe(card);
+    });
+</script>
+</body>
+</html>
