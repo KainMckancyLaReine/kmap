@@ -10,9 +10,9 @@ Estudio KMAP is een digitaal bureau gespecialiseerd in webontwikkeling en digita
 
 ## 🎬 Video Trailer
 
-https://github.com/KainMckancyLaReine/kmap/Trailer.mp4
+https://github.com/KainMckancyLaReine/kmap/assets/123456789/Trailer.mp4
 
-*Als de video niet direct speelt, [download hem dan hier](./Trailer.mp4)*
+*Als de video niet direct speelt, [download hem dan hier](asset/Trailer.mp4)*
 
 ---
 
