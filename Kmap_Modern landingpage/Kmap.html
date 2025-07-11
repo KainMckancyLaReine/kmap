@@ -19,14 +19,14 @@
             overflow-x: hidden;
         }
 
-        /* Modern Preloader */
+        /* Modern Preloader - White Version */
         .preloader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #000 100%);
+            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -52,7 +52,7 @@
             font-weight: 900;
             margin-bottom: 20px;
             letter-spacing: -2px;
-            color: #ffffff;
+            color: #000;
             position: relative;
             animation: logoGlow 2s ease-in-out infinite;
         }
@@ -73,14 +73,14 @@
         }
 
         .code-container {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
             border-radius: 12px;
             padding: 30px;
             margin: 40px 0;
-            backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .code-container::before {
@@ -90,7 +90,7 @@
             left: 0;
             right: 0;
             height: 40px;
-            background: linear-gradient(90deg, rgba(255, 107, 107, 0.2), rgba(78, 205, 196, 0.2), rgba(255, 217, 61, 0.2));
+            background: linear-gradient(90deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1), rgba(255, 217, 61, 0.1));
             border-radius: 12px 12px 0 0;
         }
 
@@ -119,10 +119,11 @@
         }
 
         .code-title {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(0, 0, 0, 0.6);
             font-size: 12px;
             margin-left: 10px;
             font-family: 'Monaco', 'Menlo', monospace;
+            font-weight: 500;
         }
 
         .code-content {
@@ -130,7 +131,7 @@
             font-size: 14px;
             line-height: 1.6;
             text-align: left;
-            color: #ffffff;
+            color: #333;
             position: relative;
         }
 
@@ -148,31 +149,31 @@
         .code-line:nth-child(5) { animation-delay: 1.7s; }
 
         .code-keyword {
-            color: #ff6b6b;
+            color: #d63384;
         }
 
         .code-string {
-            color: #4ecdc4;
+            color: #20c997;
         }
 
         .code-comment {
-            color: #666;
+            color: #6c757d;
             font-style: italic;
         }
 
         .code-function {
-            color: #ffd93d;
+            color: #6610f2;
         }
 
         .code-variable {
-            color: #667eea;
+            color: #fd7e14;
         }
 
         .cursor {
             display: inline-block;
             width: 2px;
             height: 18px;
-            background: #ffffff;
+            background: #333;
             animation: blink 1s infinite;
             margin-left: 2px;
         }
@@ -183,7 +184,7 @@
 
         .loading-text {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(0, 0, 0, 0.8);
             margin-bottom: 20px;
             font-weight: 500;
         }
@@ -191,7 +192,7 @@
         .loading-bar {
             width: 100%;
             height: 4px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.1);
             border-radius: 2px;
             overflow: hidden;
             position: relative;
@@ -224,7 +225,7 @@
             right: 0;
             font-size: 12px;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(0, 0, 0, 0.9);
             font-family: 'Monaco', 'Menlo', monospace;
         }
 
@@ -242,7 +243,7 @@
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.1);
             animation: float 6s ease-in-out infinite;
         }
 
@@ -257,14 +258,11 @@
         .particle:nth-child(9) { left: 90%; animation-delay: 3.5s; }
 
         @keyframes logoGlow {
-            0%, 100% {
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-                transform: scale(1);
-            }
-            50% {
-                text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-                transform: scale(1.02);
-            }
+            0% { text-shadow: 0 0 10px rgba(255, 107, 107, 0.3); }
+            25% { text-shadow: 0 0 10px rgba(78, 205, 196, 0.3); }
+            50% { text-shadow: 0 0 10px rgba(255, 217, 61, 0.3); }
+            75% { text-shadow: 0 0 10px rgba(102, 126, 234, 0.3); }
+            100% { text-shadow: 0 0 10px rgba(255, 107, 107, 0.3); }
         }
 
         @keyframes gradientShift {
