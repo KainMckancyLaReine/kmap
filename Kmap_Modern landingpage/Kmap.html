@@ -1598,57 +1598,65 @@
 </section>
 
 <script>
-    // Modern Preloader with Code Animation
-    window.addEventListener('load', function() {
-        const preloader = document.getElementById('preloader');
-        const percentageElement = document.getElementById('loadingPercentage');
-        let percentage = 0;
+    // Check if the page has been loaded before
+    if (!sessionStorage.getItem('firstLoad')) {
+        sessionStorage.setItem('firstLoad', 'true');
 
-        // Voorkom scrollen tijdens de preloader
-        document.body.style.overflow = 'hidden';
+        // Modern Preloader with Code Animation
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            const percentageElement = document.getElementById('loadingPercentage');
+            let percentage = 0;
 
-        // Animate percentage counter with realistic loading steps
-        const loadingSteps = [
-            { percent: 15, delay: 200, text: 'Initializing creative engine...' },
-            { percent: 35, delay: 400, text: 'Loading design systems...' },
-            { percent: 60, delay: 600, text: 'Compiling brand assets...' },
-            { percent: 85, delay: 300, text: 'Finalizing experience...' },
-            { percent: 100, delay: 200, text: 'Ready to create magic ✨' }
-        ];
+            // Voorkom scrollen tijdens de preloader
+            document.body.style.overflow = 'hidden';
 
-        let currentStep = 0;
+            // Animate percentage counter with realistic loading steps
+            const loadingSteps = [
+                { percent: 15, delay: 200, text: 'Initializing creative engine...' },
+                { percent: 35, delay: 400, text: 'Loading design systems...' },
+                { percent: 60, delay: 600, text: 'Compiling brand assets...' },
+                { percent: 85, delay: 300, text: 'Finalizing experience...' },
+                { percent: 100, delay: 200, text: 'Ready to create magic ✨' }
+            ];
 
-        function animateLoading() {
-            if (currentStep < loadingSteps.length) {
-                const step = loadingSteps[currentStep];
+            let currentStep = 0;
 
-                const incrementInterval = setInterval(() => {
-                    if (percentage < step.percent) {
-                        percentage += Math.random() * 3 + 1;
-                        if (percentage > step.percent) percentage = step.percent;
-                        percentageElement.textContent = Math.floor(percentage) + '%';
-                    } else {
-                        clearInterval(incrementInterval);
-                        currentStep++;
-                        setTimeout(animateLoading, step.delay);
-                    }
-                }, 50);
-            } else {
-                // All steps completed, hide preloader
-                setTimeout(() => {
-                    preloader.classList.add('hidden');
+            function animateLoading() {
+                if (currentStep < loadingSteps.length) {
+                    const step = loadingSteps[currentStep];
+
+                    const incrementInterval = setInterval(() => {
+                        if (percentage < step.percent) {
+                            percentage += Math.random() * 3 + 1;
+                            if (percentage > step.percent) percentage = step.percent;
+                            percentageElement.textContent = Math.floor(percentage) + '%';
+                        } else {
+                            clearInterval(incrementInterval);
+                            currentStep++;
+                            setTimeout(animateLoading, step.delay);
+                        }
+                    }, 50);
+                } else {
+                    // All steps completed, hide preloader
                     setTimeout(() => {
-                        preloader.remove();
-                        // Sta scrollen weer toe
-                        document.body.style.overflow = 'auto';
-                    }, 800);
-                }, 500);
+                        preloader.classList.add('hidden');
+                        setTimeout(() => {
+                            preloader.remove();
+                            // Sta scrollen weer toe
+                            document.body.style.overflow = 'auto';
+                        }, 800);
+                    }, 500);
+                }
             }
-        }
 
-        // Start loading animation after initial code typing
-        setTimeout(animateLoading, 2000);
-    });
+            // Start loading animation after initial code typing
+            setTimeout(animateLoading, 2000);
+        });
+    } else {
+        // If it's not the first load, remove the preloader immediately
+        document.getElementById('preloader')?.remove();
+    }
 
     // Pricing Modal Logic
     const pricingModal = document.getElementById('pricingModal');
